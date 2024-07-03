@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 3000
-app.use(express.json())
+app.use(express.json());
+app.use(middleWare);
+app.use(logger);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -48,6 +50,25 @@ app.put('/courses/:id', (req, res) =>{
 })
 
 
+
+function middleWare(req,res,next){
+  console.log("called");
+  next();
+}
+
+app.delete('/courses',(req,res)=>{
+  const deletedCourse = courses[req.body.id-1];
+  courses.splice(req.body.id-1,1);
+  res.send(deletedCourse);
+})
+
+function logger(req, res, next){
+  console.log(req.ip);
+  console.log(req.hostname);
+  console.log(new Date());
+  console.log(req.method);
+  next();
+}
 // app.listen(port, () =>{
 //     console.log("server started");
 // });
