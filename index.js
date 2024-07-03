@@ -49,18 +49,18 @@ app.put('/courses/:id', (req, res) =>{
   }
 })
 
-
+app.delete('/courses',(req,res)=>{
+  const deletedCourse = courses[req.body.id-1];
+  courses.splice(req.body.id-1,1);
+  res.send(deletedCourse);
+})
 
 function middleWare(req,res,next){
   console.log("called");
   next();
 }
 
-app.delete('/courses',(req,res)=>{
-  const deletedCourse = courses[req.body.id-1];
-  courses.splice(req.body.id-1,1);
-  res.send(deletedCourse);
-})
+
 
 function logger(req, res, next){
   console.log(req.ip);
