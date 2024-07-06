@@ -72,3 +72,5 @@ function logger(req, res, next){
 // app.listen(port, () =>{
 //     console.log("server started");
 // });
+
+console.log("sdiu");
